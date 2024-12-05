@@ -1,5 +1,7 @@
 package com.cotizador.cotizador_seguros_api.servicios;
 
+import com.cotizador.cotizador_seguros_api.dto.Request;
+import com.cotizador.cotizador_seguros_api.dto.Response;
 import com.cotizador.cotizador_seguros_api.modelos.Usuario;
 import com.cotizador.cotizador_seguros_api.modelos.Vehiculo;
 import com.cotizador.cotizador_seguros_api.repositorios.IUsuarioRepositorio;
@@ -20,10 +22,27 @@ public class VehiculoServicio {
 
 
     //1. Método para guardar usuario
-    public Vehiculo guardarVehiculo(Vehiculo datosVehiculo)throws Exception{
+    public Response guardarVehiculo(Request request)throws Exception{
         try{
-            datosVehiculo.setUsuario(1);
-            return iVehiculoRepositorio.save(datosVehiculo);
+
+            Integer userId = request.getUserId();
+            Usuario usuario = iUsuarioRepositorio.findById(userId).orElseThrow(()-> new RuntimeException("Usuario no encontrado"));
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.setUsuario(usuario);
+            vehiculo.setPlaca(request.getPlaca());
+            vehiculo.setMarca(request.getMarca());
+            vehiculo.setModelo(request.getModelo());
+
+
+            this.iVehiculoRepositorio.save(vehiculo);
+            Response response = new Response();
+            response.setIdVehiculo(vehiculo.getIdVehiculo());
+            response.setUserId(vehiculo.getUsuario().getIdUsuario());
+            response.setPlaca(vehiculo.getPlaca());
+            response.setMarca(vehiculo.getMarca());
+            response.setModelo(vehiculo.getModelo());
+
+            return response;
         } catch (Exception error) {
             throw new RuntimeException(error);
         }
