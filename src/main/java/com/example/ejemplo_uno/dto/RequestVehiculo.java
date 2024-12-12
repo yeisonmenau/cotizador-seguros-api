@@ -1,30 +1,18 @@
-package com.cotizador.cotizador_seguros_api.dto;
+package com.example.ejemplo_uno.dto;
 
-import com.cotizador.cotizador_seguros_api.modelos.Usuario;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+public class RequestVehiculo {
 
-@Data
-public class Request {
-
-    private Integer userId;
-
+    private Integer usuarioId;
     private String placa;
-
     private String marca;
-
     private Integer modelo;
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUsuarioId(Integer usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public String getPlaca() {

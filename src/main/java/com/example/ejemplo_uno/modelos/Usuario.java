@@ -1,6 +1,8 @@
-package com.cotizador.cotizador_seguros_api.modelos;
+package com.example.ejemplo_uno.modelos;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -11,19 +13,32 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
-    @Column(name = "cedula", length = 15, nullable = false, unique = true)
+    @Column(length = 15, nullable = false, unique = true)
     private String cedula;
 
-    @Column(name = "nombre", length = 50)
+    @Column(length = 50)
     private String nombre;
 
-    @Column(name = "correo", length = 100, nullable = false, unique = true)
+    @Column(length = 50, nullable = false)
     private String correo;
 
-    @Column(name = "contrasena", length = 255, nullable = false)
-    private String contrasena;
+    @Column(length = 20, nullable = false)
+    private String password;
 
-    // Getters y Setters
+    @OneToMany(mappedBy = "usuario")
+    private List<Vehiculo> vehiculos;
+
+    public Usuario() {
+    }
+
+    public Usuario(Integer idUsuario, String cedula, String nombre, String correo, String password) {
+        this.idUsuario = idUsuario;
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.password = password;
+    }
+
     public Integer getIdUsuario() {
         return idUsuario;
     }
@@ -56,12 +71,11 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
-

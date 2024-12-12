@@ -1,13 +1,13 @@
-package com.cotizador.cotizador_seguros_api;
+package com.example.ejemplo_uno;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CotizadorSegurosApiApplication {
+public class EjemploUnoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CotizadorSegurosApiApplication.class, args);
+		SpringApplication.run(EjemploUnoApplication.class, args);
 	}
 
 }
