@@ -1,5 +1,6 @@
 package com.example.ejemplo_uno.modelos;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +21,7 @@ public class Vehiculo {
     private String placa;
 
     @ManyToOne(optional = false)
+    @JsonBackReference
     @JoinColumn(name = "id_usuario", nullable = false, updatable = false)
     private Usuario usuario;
 

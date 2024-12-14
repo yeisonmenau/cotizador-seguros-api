@@ -74,7 +74,7 @@
 
 //Para guardar un vehículo debe de ligarse a un usuario existente
 
-//Sigue los Shemas para agregar y editar usario y vehículos 
+//Sigue los Shemas para agregar y editar usarios y vehículos 
 
 ## Documentation
 
