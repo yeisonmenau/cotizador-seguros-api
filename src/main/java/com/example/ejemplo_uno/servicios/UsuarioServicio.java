@@ -29,12 +29,16 @@ public class UsuarioServicio {
     //Operaciones Read
 
     //Buscar por ID
-    public Usuario buscarUsuarioPorId(Integer idUsuario){
-        Optional<Usuario> usuarioOptional = iUsuarioRepositorio.findById(idUsuario);
-        if (usuarioOptional.isPresent()){
-            return usuarioOptional.get();
-        }else{
-            throw new RuntimeException("Usuario con ID " + idUsuario + " no se encuentra en la base de datos");
+    public Usuario buscarUsuarioPorId(Integer idUsuario)throws Exception{
+        try{
+            Optional<Usuario> usuarioOptional = iUsuarioRepositorio.findById(idUsuario);
+            if (usuarioOptional.isPresent()){
+                return usuarioOptional.get();
+            }else{
+                throw new RuntimeException("Usuario con ID " + idUsuario + " no se encuentra en la base de datos");
+            }
+        }catch (Exception error){
+            throw new Exception(error.getMessage());
         }
     }
 
@@ -50,7 +54,6 @@ public class UsuarioServicio {
 
     public Usuario actualizarUsuario(Integer idUsuario, Usuario datosUsuarioActualizo){
         Optional<Usuario> usuarioOptional = iUsuarioRepositorio.findById(idUsuario);
-
         if(usuarioOptional.isEmpty()){
             throw new RuntimeException("Usuario con ID " + idUsuario + " no se encuentra en la base de datos");
         }
@@ -63,13 +66,16 @@ public class UsuarioServicio {
 
     //Operacion Delete
 
-    public void eliminarUsuario(Integer idUsuario){
-        if (!iUsuarioRepositorio.existsById(idUsuario)) {
-            throw new RuntimeException("Usuario con ID " + idUsuario + " no se encuentra en la base de datos");
-        } else {
-            iUsuarioRepositorio.deleteById(idUsuario);
+    public void eliminarUsuario(Integer idUsuario)throws Exception{
+        try{
+            if (!iUsuarioRepositorio.existsById(idUsuario)) {
+                throw new RuntimeException("Usuario con ID " + idUsuario + " no se encuentra en la base de datos");
+            } else {
+                iUsuarioRepositorio.deleteById(idUsuario);
+            }
+        } catch (Exception error) {
+            throw new RuntimeException(error.getMessage());
         }
-
     }
 
 }

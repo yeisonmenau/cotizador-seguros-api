@@ -50,12 +50,8 @@ public class VehiculoServicio {
             response.setModelo(vehiculoGuardado.getModelo());
 
             return response;
-        } catch (RuntimeException e) {
-            // Manejo de excepciones específicas
-            throw e;
         } catch (Exception error) {
-            // Manejo de excepciones generales
-            throw new RuntimeException("Error al guardar el vehículo: " + error.getMessage(), error);
+            throw new RuntimeException(error.getMessage());
         }
     }
 
@@ -86,19 +82,27 @@ public class VehiculoServicio {
     }
 
     //Operación Update
-    public Vehiculo actualizarVehiculo (Integer idVehiculo, Vehiculo datosVehiculoActualizo)throws Exception{
+    public ResponseVehiculo actualizarVehiculo (Integer idVehiculo, RequestVehiculo datosVehiculoActualizo)throws Exception{
         try{
             Optional<Vehiculo> vehiculoOptional = iVehiculoRepositorio.findById(idVehiculo);
-
             if(vehiculoOptional.isEmpty()){
                 throw new RuntimeException("Vehiculo con ID " + idVehiculo + " no se encuentra en la base de datos");
             }
             Vehiculo vehiculoExistente = vehiculoOptional.get();
             vehiculoExistente.setMarca(datosVehiculoActualizo.getMarca());
             vehiculoExistente.setModelo(datosVehiculoActualizo.getModelo());
-            vehiculoExistente.setPlaca(datosVehiculoActualizo.getPlaca());
-            vehiculoExistente.setUsuario(datosVehiculoActualizo.getUsuario());
-            return iVehiculoRepositorio.save(vehiculoExistente);
+
+            Vehiculo vehiculoActualizado = iVehiculoRepositorio.save(vehiculoExistente);
+
+            // Convertir a un objeto de respuesta y devolverlo
+            ResponseVehiculo response = new ResponseVehiculo();
+            response.setIdVehiculo(vehiculoActualizado.getIdVehiculo());
+            response.setPlaca(vehiculoActualizado.getPlaca());
+            response.setMarca(vehiculoActualizado.getMarca());
+            response.setModelo(vehiculoActualizado.getModelo());
+
+            return response;
+
         }catch (Exception error){
             throw new Exception(error.getMessage());
         }
@@ -111,6 +115,7 @@ public class VehiculoServicio {
             if (!iVehiculoRepositorio.existsById(idVehiculo)) {
                 throw new RuntimeException("Vehiculo con ID " + idVehiculo + " no se encuentra en la base de datos");
             }else {
+
                 iVehiculoRepositorio.deleteById(idVehiculo);
             }
 

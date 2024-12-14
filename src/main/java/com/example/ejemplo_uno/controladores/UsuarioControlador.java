@@ -34,10 +34,11 @@ public class UsuarioControlador {
     @GetMapping("/{idUsuario}")
     public ResponseEntity<?> buscarUsuarioPorId(@PathVariable Integer idUsuario) {
         try {
-            Usuario usuario = usuarioServicio.buscarUsuarioPorId(idUsuario);
-            return ResponseEntity.ok(usuario);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(usuarioServicio.buscarUsuarioPorId(idUsuario));
+        }catch (Exception error) {
+            throw new RuntimeException(error.getMessage());
         }
     }
 
@@ -69,8 +70,8 @@ public class UsuarioControlador {
         try {
             usuarioServicio.eliminarUsuario(id);
             return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+        } catch (Exception error) {
+            throw new RuntimeException(error);
         }
     }
 }

@@ -59,7 +59,7 @@ public class VehiculoControlador {
 
     // Operación Update
     @PutMapping("/{idVehiculo}")
-    public ResponseEntity<?> actualizarVehiculo(@PathVariable("idVehiculo") Integer idVehiculo, @RequestBody Vehiculo datosVehiculoActualizo) {
+    public ResponseEntity<?> actualizarVehiculo(@PathVariable("idVehiculo") Integer idVehiculo, @RequestBody RequestVehiculo datosVehiculoActualizo) {
         try {
             return ResponseEntity
                     .status(HttpStatus.OK)
