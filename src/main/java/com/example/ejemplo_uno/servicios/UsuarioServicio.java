@@ -61,6 +61,7 @@ public class UsuarioServicio {
         usuarioExistente.setNombre(datosUsuarioActualizo.getNombre());
         usuarioExistente.setCorreo(datosUsuarioActualizo.getCorreo());
         usuarioExistente.setPassword(datosUsuarioActualizo.getPassword());
+        usuarioExistente.setActivo(datosUsuarioActualizo.getActivo());
         return iUsuarioRepositorio.save(usuarioExistente);
     }
 

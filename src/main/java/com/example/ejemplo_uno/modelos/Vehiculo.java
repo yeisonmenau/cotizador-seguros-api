@@ -20,6 +20,14 @@ public class Vehiculo {
     @Column(length = 10)
     private String placa;
 
+    @Column(length = 50)
+    private String nombre;
+
+    private Float valor;
+
+    private Boolean activo = true;
+
+
     @ManyToOne(optional = false)
     @JsonBackReference
     @JoinColumn(name = "id_usuario", nullable = false, updatable = false)
@@ -28,11 +36,14 @@ public class Vehiculo {
     public Vehiculo() {
     }
 
-    public Vehiculo(Integer idVehiculo, String marca, Integer modelo, String placa, Usuario usuario) {
+    public Vehiculo(Integer idVehiculo, String marca, Integer modelo, String placa, String nombre, Float valor, Boolean activo, Usuario usuario) {
         this.idVehiculo = idVehiculo;
         this.marca = marca;
         this.modelo = modelo;
         this.placa = placa;
+        this.nombre = nombre;
+        this.valor = valor;
+        this.activo = activo;
         this.usuario = usuario;
     }
 
@@ -66,6 +77,30 @@ public class Vehiculo {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Float getValor() {
+        return valor;
+    }
+
+    public void setValor(Float valor) {
+        this.valor = valor;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     public Usuario getUsuario() {

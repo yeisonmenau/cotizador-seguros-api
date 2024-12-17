@@ -34,9 +34,11 @@ public class VehiculoServicio {
             // Crear y configurar el vehículo
             Vehiculo vehiculo = new Vehiculo();
             vehiculo.setUsuario(usuario);
-            vehiculo.setPlaca(request.getPlaca());
             vehiculo.setMarca(request.getMarca());
             vehiculo.setModelo(request.getModelo());
+            vehiculo.setPlaca(request.getPlaca());
+            vehiculo.setNombre(request.getNombre());
+            vehiculo.setValor(request.getValor());
 
             // Guardar el vehículo en la base de datos
             Vehiculo vehiculoGuardado = iVehiculoRepositorio.save(vehiculo);
@@ -48,6 +50,8 @@ public class VehiculoServicio {
             response.setPlaca(vehiculoGuardado.getPlaca());
             response.setMarca(vehiculoGuardado.getMarca());
             response.setModelo(vehiculoGuardado.getModelo());
+            response.setNombre(vehiculo.getNombre());
+            response.setValor(vehiculo.getValor());
 
             return response;
         } catch (Exception error) {
@@ -91,6 +95,9 @@ public class VehiculoServicio {
             Vehiculo vehiculoExistente = vehiculoOptional.get();
             vehiculoExistente.setMarca(datosVehiculoActualizo.getMarca());
             vehiculoExistente.setModelo(datosVehiculoActualizo.getModelo());
+            vehiculoExistente.setNombre(datosVehiculoActualizo.getNombre());
+            vehiculoExistente.setValor(datosVehiculoActualizo.getValor());
+            vehiculoExistente.setActivo(datosVehiculoActualizo.getActivo());
 
             Vehiculo vehiculoActualizado = iVehiculoRepositorio.save(vehiculoExistente);
 
@@ -100,6 +107,9 @@ public class VehiculoServicio {
             response.setPlaca(vehiculoActualizado.getPlaca());
             response.setMarca(vehiculoActualizado.getMarca());
             response.setModelo(vehiculoActualizado.getModelo());
+            response.setNombre(vehiculoActualizado.getNombre());
+            response.setValor(vehiculoActualizado.getValor());
+            response.setActivo(vehiculoActualizado.getActivo());
 
             return response;
 

@@ -1,6 +1,5 @@
 package com.example.ejemplo_uno.modelos;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -27,21 +26,25 @@ public class Usuario {
     @Column(length = 20, nullable = false)
     private String password;
 
+    private Boolean activo = true;
 
     @OneToMany(mappedBy = "usuario")
     @JsonManagedReference
     private List<Vehiculo> vehiculos;
 
+
+
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario, String cedula, String nombre, String correo, String password, List<Vehiculo> vehiculos) {
+    public Usuario(Integer idUsuario, String cedula, String nombre, String correo, String password, List<Vehiculo> vehiculos, Boolean activo) {
         this.idUsuario = idUsuario;
         this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
         this.vehiculos = vehiculos;
+        this.activo = activo;
     }
 
     public Integer getIdUsuario() {
@@ -90,5 +93,13 @@ public class Usuario {
 
     public void setVehiculos(List<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 }
