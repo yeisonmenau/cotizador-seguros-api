@@ -31,7 +31,7 @@
 #### Post
 ```bash
 {
-  "cedula": "cedula123",
+  "cedula": "123",
   "nombre": "fulano",
   "correo": "fulano@mail.com",
   "password": "fulano123"
@@ -43,8 +43,9 @@
 ```bash
 {
   "nombre": "Maria",
-  "correo": "Maria@gmail.com",
-  "password": "Maria123"
+  "correo": "Maria@mail.com",
+  "password": "maria123",
+  "activo": false	
 }
 ```
 
@@ -53,18 +54,24 @@
 #### Post 
 ```bash
 {
-  "usuarioId": 16,
+  "usuarioId": 1,
   "placa": "ABC123",
-  "marca": "KIA",
-  "modelo": 2023
+  "marca": "MARCA X",
+  "modelo": 2020,
+  "nombre": "NOMBRE X",
+  "valor": 20000
 }
 ```
 #### Put 
 ```bash
 {
-  "marca": "MARCA X",
-  "modelo": 2020
+  "marca": "MARCA A",
+  "modelo": 1020,
+  "nombre": "NOMBRE A",
+  "valor": 10000.5,
+  "activo": false
 }
+
 ```
 
 
